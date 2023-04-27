@@ -43,7 +43,34 @@ function drawLine(x1, y1, x2, y2) {
   ctx.lineTo(x2, y2);
   ctx.stroke();
 }
+function drawCircle(x, y, radius) {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  ctx.stroke();
+}
+function drawRectangle(x, y, width, height) {
+  ctx.strokeRect(x, y, width, height);
+}
 
     </script>
 </body>
 </html>
+<!--
+    This code is for a touch drawing app using the HTML5 Canvas element and JavaScript.
+
+First, it gets a reference to the Canvas element with the ID "myCanvas" and creates a 2D drawing context object using getContext('2d').
+
+Then, it initializes a variable isDrawing to false and two variables lastX and lastY to undefined.
+
+Next, it attaches an event listener for touchstart on the Canvas element. When the touch event starts, it sets isDrawing to true and calculates the initial touch position relative to the Canvas element and stores it in lastX and lastY.
+
+Then, it attaches another event listener for touchmove on the Canvas element. When the touch moves, it checks if isDrawing is true. If it is, it calculates the current touch position relative to the Canvas element and draws a line from the previous touch position to the current touch position using the drawLine function. Finally, it updates lastX and lastY to the current touch position.
+
+When the touch event ends, the touchend event listener sets isDrawing to false.
+
+Lastly, there is a drawLine function that takes four parameters: x1, y1, x2, and y2. It starts a new path with beginPath(), moves the starting point of the path to (x1, y1) with moveTo(), draws a line to (x2, y2) with lineTo(), and strokes the path with stroke(). This function is used to draw lines between the touch points.
+
+
+
+
+-->
