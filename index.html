@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Touch Drawing App</title>
+	<style type="text/css">
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="400" height="400"></canvas>
+<script>
+    var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+var isDrawing = false;
+var lastX, lastY;
+
+canvas.addEventListener('touchstart', function(event) {
+  isDrawing = true;
+  lastX = event.touches[0].clientX - canvas.offsetLeft;
+  lastY = event.touches[0].clientY - canvas.offsetTop;
+});
+
+canvas.addEventListener('touchmove', function(event) {
+  if (isDrawing) {
+    var currentX = event.touches[0].clientX - canvas.offsetLeft;
+    var currentY = event.touches[0].clientY - canvas.offsetTop;
+    
+    drawLine(lastX, lastY, currentX, currentY);
+    lastX = currentX;
+    lastY = currentY;
+  }
+});
+
+canvas.addEventListener('touchend', function(event) {
+  isDrawing = false;
+});
+
+function drawLine(x1, y1, x2, y2) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+}
+
+    </script>
+</body>
+</html>
